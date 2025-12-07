@@ -1,6 +1,7 @@
 'use client';
 
 import { scrapeAndStoreProduct } from '@/lib/actions';
+import * as cheerio from 'cheerio';
 import { FormEvent, useState } from 'react';
 
 const isValidAmazonProductURL = (url: string) => {
@@ -36,7 +37,6 @@ const Searchbar = () => {
     try {
       setIsLoading(true);
 
-      // Scrape the product page
       const product = await scrapeAndStoreProduct(searchPrompt);
     } catch (error) {
       console.log(error);
