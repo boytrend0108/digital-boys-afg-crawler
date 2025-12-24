@@ -1,4 +1,4 @@
-'use server';
+"use server";
 
 import { revalidatePath } from "next/cache";
 import Product from "../models/product.model";
@@ -8,8 +8,8 @@ import { getAveragePrice, getHighestPrice, getLowestPrice } from "../utils";
 
 export const scrapeAndStoreProduct = async (productURL: string) => {
   if (!productURL) {
-    throw new Error('Product URL is required');
-  };
+    throw new Error("Product URL is required");
+  }
 
   try {
     await connectToDB();
@@ -25,7 +25,7 @@ export const scrapeAndStoreProduct = async (productURL: string) => {
     if (existingProduct) {
       const updatedPriceHistory = [
         ...existingProduct.priceHistory,
-        { price: scrapedProduct.currentPrice }
+        { price: scrapedProduct.currentPrice },
       ];
 
       product = {
@@ -34,9 +34,8 @@ export const scrapeAndStoreProduct = async (productURL: string) => {
         lowestPrice: getLowestPrice(updatedPriceHistory),
         highestPrice: getHighestPrice(updatedPriceHistory),
         averagePrice: getAveragePrice(updatedPriceHistory),
-      }
-    };
-
+      };
+    }
 
     const newProduct = await Product.findOneAndUpdate(
       { url: scrapedProduct.url },
@@ -45,34 +44,50 @@ export const scrapeAndStoreProduct = async (productURL: string) => {
     );
 
     revalidatePath(`/products/${newProduct._id}`);
-
   } catch (error) {
-    console.error('Error scraping product:', error);
-    throw new Error('Failed to scrape product');
+    console.error("Error scraping product:", error);
+    throw new Error("Failed to scrape product");
   }
 };
 
 export const getProductById = async (productId: string) => {
   try {
     await connectToDB();
-    const product = await Product.findOne({ _id: productId })
+    const product = await Product.findOne({ _id: productId });
     if (!product) return null;
 
     return product;
   } catch (error) {
-    console.error('Error fetching product by ID:', error);
-    throw new Error('Failed to fetch product by ID');
+    console.error("Error fetching product by ID:", error);
+    throw new Error("Failed to fetch product by ID");
   }
-}
+};
 
 export const getAllProducts = async () => {
   try {
     await connectToDB();
-    const products = await Product.find()
+    const products = await Product.find();
     return products;
   } catch (error) {
-    console.error('Error fetching all products:', error);
-    throw new Error('Failed to fetch all products');
+    console.error("Error fetching all products:", error);
+    throw new Error("Failed to fetch all products");
+  }
+};
+
+export async function getSimilarProducts(productId: string) {
+  try {
+    connectToDB();
+
+    const currentProduct = await Product.findById(productId);
+
+    if (!currentProduct) return null;
+
+    const similarProducts = await Product.find({
+      _id: { $ne: productId },
+    }).limit(3);
+
+    return similarProducts;
+  } catch (error) {
+    console.log(error);
   }
 }
-
