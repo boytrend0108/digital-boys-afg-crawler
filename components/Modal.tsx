@@ -1,8 +1,9 @@
 "use client";
 
-import { FormEvent, Fragment, useState } from "react";
+import { FormEvent, Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
+import { addUserEmailToProduct } from "@/lib/actions";
 // import { addUserEmailToProduct } from "@/lib/actions";
 
 interface Props {
@@ -18,7 +19,7 @@ const Modal = ({ productId }: Props) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // await addUserEmailToProduct(productId, email);
+    await addUserEmailToProduct(productId, email);
 
     setIsSubmitting(false);
     setEmail("");
@@ -42,7 +43,6 @@ const Modal = ({ productId }: Props) => {
           onClose={closeModal}
           className="fixed inset-0 z-50 flex items-center justify-center"
         >
-          {/* Overlay */}
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -55,7 +55,6 @@ const Modal = ({ productId }: Props) => {
             <div className="fixed inset-0 bg-black/25 z-0" aria-hidden="true" />
           </Transition.Child>
 
-          {/* Content wrapper */}
           <div className="relative z-10 min-h-screen px-4 text-center">
             <span
               className="inline-block h-screen align-middle"

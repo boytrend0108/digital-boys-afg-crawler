@@ -1,11 +1,11 @@
 import { PriceHistoryItem, Product } from "@/types";
 
 const Notification = {
-  WELCOME: 'WELCOME',
-  CHANGE_OF_STOCK: 'CHANGE_OF_STOCK',
-  LOWEST_PRICE: 'LOWEST_PRICE',
-  THRESHOLD_MET: 'THRESHOLD_MET',
-}
+  WELCOME: "WELCOME",
+  CHANGE_OF_STOCK: "CHANGE_OF_STOCK",
+  LOWEST_PRICE: "LOWEST_PRICE",
+  THRESHOLD_MET: "THRESHOLD_MET",
+};
 
 const THRESHOLD_PERCENTAGE = 40;
 
@@ -15,9 +15,9 @@ export function extractPrice(...elements: any) {
     const priceText = element.text().trim();
 
     if (priceText) {
-      const cleanPrice = priceText.replace(/[^\d.]/g, '');
+      const cleanPrice = priceText.replace(/[^\d.]/g, "");
 
-      let firstPrice;
+      let firstPrice: string | undefined;
 
       if (cleanPrice) {
         firstPrice = cleanPrice.match(/\d+\.\d{2}/)?.[0];
@@ -27,7 +27,7 @@ export function extractPrice(...elements: any) {
     }
   }
 
-  return '';
+  return "";
 }
 
 // Extracts and returns the currency symbol from an element.

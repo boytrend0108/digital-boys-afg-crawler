@@ -4,7 +4,6 @@ import PriceInfoCard from "@/components/PriceInfoCard";
 import ProductCard from "@/components/ProductCard";
 import { getProductById, getSimilarProducts } from "@/lib/actions";
 import { formatNumber } from "@/lib/utils";
-import { Product } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -15,7 +14,7 @@ export default async function ProductDetails({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const product: Product = await getProductById(id);
+  const product = await getProductById(id);
   if (!product) redirect("/");
 
   const similarProducts = await getSimilarProducts(id);
@@ -196,7 +195,7 @@ export default async function ProductDetails({
 
           <div className="flex flex-wrap gap-10 mt-7 w-full">
             {similarProducts.map((product) => (
-              <ProductCard key={product._id} product={product} />
+              <ProductCard key={String(product._id)} product={product} />
             ))}
           </div>
         </div>
