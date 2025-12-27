@@ -116,6 +116,31 @@
   @apply py-4 px-4 bg-secondary hover:bg-gray-700  rounded-[30px] text-white text-lg font-semibold;
 }
 
+/* MODAL */
+.dialog-container {
+  @apply fixed inset-0 z-10 overflow-y-auto bg-black bg-opacity-25;
+}
+
+.dialog-content {
+  @apply p-6  bg-white inline-block w-full max-w-md my-8 overflow-hidden text-left align-middle transition-all transform  shadow-xl rounded-2xl;
+}
+
+.dialog-head_text {
+  @apply text-secondary text-lg leading-[24px] font-semibold mt-4;
+}
+
+.dialog-input_container {
+  @apply px-5 py-3 mt-3 flex items-center gap-2 border border-gray-300 rounded-[27px];
+}
+
+.dialog-input {
+  @apply flex-1 pl-1 border-none text-gray-500 text-base focus:outline-none border border-gray-300 rounded-[27px] shadow-xs;
+}
+
+.dialog-btn {
+  @apply px-5 py-3 text-white text-base font-semibold border border-secondary bg-secondary rounded-lg mt-8;
+}
+
 /* PRICE INFO */
 .price-info_card {
   @apply flex-1 min-w-[200px] flex flex-col gap-2 border-l-[3px] border-l-[#E4E4E4] rounded-md bg-[#F9FAFB] px-5 py-4;

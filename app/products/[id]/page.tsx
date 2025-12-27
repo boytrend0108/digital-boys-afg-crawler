@@ -1,4 +1,5 @@
 // import Modal from '@/components/Modal';
+import Modal from "@/components/Modal";
 import PriceInfoCard from "@/components/PriceInfoCard";
 import ProductCard from "@/components/ProductCard";
 import { getProductById, getSimilarProducts } from "@/lib/actions";
@@ -127,7 +128,7 @@ export default async function ProductDetails({
           </div>
 
           <div className="my-7 flex flex-col gap-5">
-            <div className="flex gap-5 flex-wrap">
+            <div className="flex gap-5 flex-wrap max-w-md">
               <PriceInfoCard
                 title="Current Price"
                 iconSrc="/assets/icons/price-tag.svg"
@@ -159,7 +160,7 @@ export default async function ProductDetails({
             </div>
           </div>
 
-          {/* <Modal productId={id} /> */}
+          <Modal productId={id} />
         </div>
       </div>
 
