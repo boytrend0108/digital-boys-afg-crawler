@@ -1,3 +1,59 @@
+# PriceWise (AFG Crawler)
+
+PriceWise is a powerful product scraping and price tracking application designed to help users make smart shopping decisions. It allows users to track product prices from Amazon, providing analytics and notifications to help convert, engage, and retain customers.
+
+## Features
+
+- **Product Scraping**: Extracts product details like title, price, images, and description from Amazon using Bright Data proxies.
+- **Price Tracking**: Monitors product prices over time.
+- **Email Notifications**: Sends alerts when products are back in stock or when prices drop.
+- **Trending Products**: Showcases trending items on the homepage.
+- **Responsive Design**: Built with a mobile-first approach using Tailwind CSS.
+
+## Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org/) (React)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Database**: [MongoDB](https://www.mongodb.com/) with [Mongoose](https://mongoosejs.com/)
+- **Linting & Formatting**: [Biome](https://biomejs.dev/)
+
+## Key Libraries
+
+- **Scraping**:
+  - `cheerio`: For parsing HTML and extracting data.
+  - `axios`: For making HTTP requests.
+  - `bright-data`: Utilized for proxy management to bypass scraping restrictions.
+- **UI Components**:
+  - `@headlessui/react`: For unstyled, fully accessible UI components.
+  - `react-responsive-carousel`: For product image carousels.
+- **Email Services**:
+  - `mailgun.js`: Integration for email delivery.
+
+## Getting Started
+
+1. **Clone the repository**
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **Set up environment variables**
+   Create a `.env` file in the root directory and add the necessary variables (e.g., MongoDB URI, Bright Data credentials, Email credentials).
+
+4. **Run the development server**
+
+   ```bash
+   npm run dev
+   ```
+
+5. **Open the app**
+   Visit [http://localhost:3000](http://localhost:3000) in your browser.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -31,6 +87,4 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[DEMO](https://digital-boys-afg-crawler.vercel.app)
